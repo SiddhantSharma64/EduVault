@@ -458,6 +458,270 @@ We will be comparing the performance of three different machine learning algorit
   currentUserId: 'user1'
 };
 
+// Security and privacy feature data
+const securityFeatures = {
+  encryptionStatus: {
+    enabled: true,
+    algorithm: 'AES-256',
+    lastUpdated: '2023-10-15'
+  },
+  accessControls: [
+    {
+      resourceId: 'resource1',
+      title: 'Advanced Algorithms: Complete Guide',
+      visibility: 'Private',
+      sharedWith: [
+        { id: 'user2', name: 'Michael Smith', role: 'View' },
+        { id: 'user3', name: 'Sarah Williams', role: 'Edit' }
+      ]
+    },
+    {
+      resourceId: 'resource2',
+      title: 'Machine Learning Fundamentals',
+      visibility: 'Public',
+      sharedWith: []
+    }
+  ]
+};
+
+// Mobile app mockup data
+const mobileFeatures = {
+  appVersion: '1.2.0',
+  platforms: ['iOS', 'Android'],
+  features: [
+    'Browse & search resources',
+    'Upload documents & photos',
+    'Offline access',
+    'Push notifications',
+    'Scan documents with camera'
+  ],
+  downloadLinks: {
+    ios: 'https://apps.apple.com/us/app/eduvault/id1234567890',
+    android: 'https://play.google.com/store/apps/details?id=com.eduvault.app'
+  },
+  screenshots: [
+    '/images/app-screenshot-1.png',
+    '/images/app-screenshot-2.png',
+    '/images/app-screenshot-3.png'
+  ]
+};
+
+// Feedback data
+const feedbackData = {
+  categories: [
+    'Bug Report',
+    'Feature Request',
+    'Content Issue',
+    'User Experience',
+    'Other'
+  ],
+  recentSubmissions: [
+    {
+      id: 'feedback1',
+      userId: 'user3',
+      userName: 'Sarah Williams',
+      category: 'Feature Request',
+      subject: 'Add Dark Mode Support',
+      description: 'Would love to see a dark mode option for late night studying!',
+      status: 'Under Review',
+      dateSubmitted: '3 days ago'
+    },
+    {
+      id: 'feedback2',
+      userId: 'user4',
+      userName: 'David Brown',
+      category: 'Bug Report',
+      subject: 'Search not working on mobile',
+      description: 'When I try to search on my iPhone, the results page remains blank.',
+      status: 'In Progress',
+      dateSubmitted: '1 week ago'
+    }
+  ],
+  helpCenter: {
+    popularArticles: [
+      { id: 'help1', title: 'Getting Started with EduVault', views: 1245 },
+      { id: 'help2', title: 'How to Upload and Share Resources', views: 987 },
+      { id: 'help3', title: 'Using Version Control', views: 756 }
+    ],
+    categories: [
+      'Account & Settings',
+      'Resources & Files',
+      'Collaboration',
+      'Mobile App',
+      'Privacy & Security'
+    ]
+  }
+};
+
+// Advanced search data
+const searchFeatures = {
+  recentSearches: [
+    'machine learning python',
+    'calculus applications',
+    'data structures java'
+  ],
+  popularFilters: [
+    'PDF',
+    'Last 7 days',
+    'Highly rated',
+    'Computer Science'
+  ],
+  sampleVoiceSearch: {
+    transcript: 'Find biology past papers with answers',
+    confidence: 0.92,
+    results: 15
+  }
+};
+
+// Resource preview data
+const previewFeatures = {
+  currentResource: {
+    id: 'resource1',
+    title: 'Advanced Algorithms: Complete Guide',
+    currentPage: 4,
+    totalPages: 26,
+    annotations: [
+      {
+        id: 'anno1',
+        userId: 'user1',
+        userName: 'Emily Johnson',
+        page: 4,
+        type: 'highlight',
+        content: 'Important theorem on complexity analysis',
+        color: 'yellow',
+        position: { x: 120, y: 350, width: 200, height: 20 }
+      },
+      {
+        id: 'anno2',
+        userId: 'user2',
+        userName: 'Michael Smith',
+        page: 4,
+        type: 'comment',
+        content: 'This explanation is particularly clear',
+        position: { x: 300, y: 400 }
+      }
+    ]
+  }
+};
+
+// Offline access data
+const offlineFeatures = {
+  downloadedResources: [
+    {
+      id: 'download1',
+      resourceId: 'resource1',
+      title: 'Advanced Algorithms: Complete Guide',
+      downloadedAt: 'Yesterday, 4:30 PM',
+      size: '4.2 MB',
+      expiresAt: 'Never'
+    },
+    {
+      id: 'download2',
+      resourceId: 'resource3',
+      title: 'Calculus for Computer Scientists',
+      downloadedAt: 'Today, 10:15 AM',
+      size: '3.7 MB',
+      expiresAt: 'Never'
+    }
+  ],
+  storageUsed: '15.8 MB',
+  storageLimit: '100 MB',
+  autoSyncEnabled: true
+};
+
+// Notification data
+const notificationFeatures = {
+  unreadCount: 3,
+  notifications: [
+    {
+      id: 'notif1',
+      type: 'resource',
+      title: 'New resource in Computer Science',
+      description: 'Michael Smith uploaded "Python for Data Science"',
+      time: '2 hours ago',
+      read: false
+    },
+    {
+      id: 'notif2',
+      type: 'comment',
+      title: 'Comment on your resource',
+      description: 'Sarah Williams commented on "Advanced Algorithms"',
+      time: '1 day ago',
+      read: false
+    },
+    {
+      id: 'notif3',
+      type: 'system',
+      title: 'Storage space running low',
+      description: 'You have used 85% of your storage quota',
+      time: '3 days ago',
+      read: false
+    }
+  ],
+  preferences: {
+    email: true,
+    push: true,
+    digestFrequency: 'Weekly'
+  },
+  nextDigest: 'Sunday, Nov 12'
+};
+
+// Monetization data
+const monetizationFeatures = {
+  plans: [
+    {
+      id: 'plan1',
+      name: 'Free',
+      price: '$0/month',
+      features: [
+        'Access to public resources',
+        'Limited uploads (100 MB)',
+        'Basic collaboration',
+        'Standard support'
+      ],
+      recommended: false
+    },
+    {
+      id: 'plan2',
+      name: 'Premium',
+      price: '$5/month',
+      features: [
+        'Unlimited access to all resources',
+        'Unlimited uploads',
+        'Advanced collaboration tools',
+        'Priority support',
+        'No advertisements',
+        'Offline access'
+      ],
+      recommended: true
+    },
+    {
+      id: 'plan3',
+      name: 'Enterprise',
+      price: 'Contact us',
+      features: [
+        'All Premium features',
+        'User management',
+        'SSO integration',
+        'Custom branding',
+        'Dedicated support',
+        'Analytics and reporting'
+      ],
+      recommended: false
+    }
+  ],
+  currentPlan: 'Free',
+  sponsoredContent: {
+    id: 'sponsored1',
+    title: 'Learn Data Science with DataCamp',
+    description: 'Interactive courses to master Python, R, SQL, and more',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGF0YSUyMHNjaWVuY2V8ZW58MHx8MHx8fDA%3D',
+    url: 'https://www.datacamp.com',
+    sponsor: 'DataCamp',
+    relevanceCategory: 'Data Science'
+  }
+};
+
 export const mockData = {
   userPoints,
   userBadges,
@@ -468,5 +732,13 @@ export const mockData = {
   resourceReviews,
   userProfileData,
   recommendedResources,
-  collaborationDocument
+  collaborationDocument,
+  securityFeatures,
+  mobileFeatures,
+  feedbackData,
+  searchFeatures,
+  previewFeatures,
+  offlineFeatures,
+  notificationFeatures,
+  monetizationFeatures
 }; 
