@@ -3,11 +3,15 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { BookCopy, Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import Link from 'next/link';
+import { useApp } from '@/lib/context/AppContext';
+import LoginButton from '@/components/auth/LoginButton';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { user } = useApp();
 
   // Change navbar style on scroll
   useEffect(() => {
@@ -55,41 +59,39 @@ export const Navbar = () => {
             <nav className="flex items-center gap-6">
               <ul className="flex gap-6">
                 <li>
-                  <a 
-                    href="#resources" 
+                  <Link 
+                    href="/resources" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Resources
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#categories" 
+                  <Link 
+                    href="/categories" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Categories
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#about" 
+                  <Link 
+                    href="/about" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
+                  <Link 
                     href="/features" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Features
-                  </a>
+                  </Link>
                 </li>
               </ul>
-              <Button size="sm" className="rounded-full shadow-button button-hover">
-                Upload Resource
-              </Button>
+              <LoginButton />
             </nav>
           )}
         </div>
@@ -106,37 +108,35 @@ export const Navbar = () => {
           }`}
         >
           <nav className="flex flex-col gap-4">
-            <a 
-              href="#resources" 
+            <Link 
+              href="/resources" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Resources
-            </a>
-            <a 
-              href="#categories" 
+            </Link>
+            <Link 
+              href="/categories" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Categories
-            </a>
-            <a 
-              href="#about" 
+            </Link>
+            <Link 
+              href="/about" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/features" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
-            </a>
-            <Button className="w-full rounded-full shadow-button">
-              Upload Resource
-            </Button>
+            </Link>
+            <LoginButton />
           </nav>
         </motion.div>
       )}
