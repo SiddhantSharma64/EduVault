@@ -3,7 +3,7 @@ import React from 'react';
 import { UserBadge } from '@/components/gamification/BadgeDisplay';
 import { LeaderboardUser } from '@/components/gamification/Leaderboard';
 import { ForumCategoryProps } from '@/components/forums/ForumCategory';
-import { ForumPostProps } from '@/components/forums/ForumPost';
+import { ForumPostData } from '@/components/forums/ForumPost';
 import { Version } from '@/components/resources/VersionControl';
 import { Review } from '@/components/resources/ResourceReviews';
 import { UserProfileData } from '@/components/profile/UserProfile';
@@ -157,7 +157,7 @@ const forumCategories: ForumCategoryProps[] = [
 ];
 
 // Forum posts
-const forumPosts: ForumPostProps[] = [
+const forumPosts: ForumPostData[] = [
   {
     id: 'post1',
     author: {
@@ -172,9 +172,7 @@ const forumPosts: ForumPostProps[] = [
     upvotes: 12,
     downvotes: 1,
     replies: 5,
-    isUserPost: false,
-    onReply: () => console.log('Reply clicked'),
-    onReport: () => console.log('Report clicked')
+    isUserPost: false
   }
 ];
 
@@ -722,23 +720,19 @@ const monetizationFeatures = {
   }
 };
 
+// Export all mockData as an object
 export const mockData = {
   userPoints,
   userBadges,
-  leaderboardUsers,
+  leaderboard: leaderboardUsers,
   forumCategories,
-  forumPosts,
+  forumPost: forumPosts[0],
   resourceVersions,
   resourceReviews,
-  userProfileData,
-  recommendedResources,
-  collaborationDocument,
-  securityFeatures,
-  mobileFeatures,
-  feedbackData,
-  searchFeatures,
-  previewFeatures,
-  offlineFeatures,
-  notificationFeatures,
-  monetizationFeatures
+  resourceAnnotations: [], // Add any missing properties that might be used
+  userProfile: {},
+  recommendedResources: [],
+  collaborationDocument: {
+    currentUser: { id: 'user1', name: 'Current User' }
+  }
 }; 

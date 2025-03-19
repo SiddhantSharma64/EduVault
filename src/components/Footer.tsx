@@ -20,7 +20,7 @@ const Footer = () => {
           <div>
             <h3 className="font-medium mb-4 text-sm">Links</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Home</a></li>
+              <li><a href="/" className="hover:text-foreground transition-colors">Home</a></li>
               <li><a href="#resources" className="hover:text-foreground transition-colors">Resources</a></li>
               <li><a href="#categories" className="hover:text-foreground transition-colors">Categories</a></li>
               <li><a href="#about" className="hover:text-foreground transition-colors">About</a></li>
@@ -30,9 +30,9 @@ const Footer = () => {
           <div>
             <h3 className="font-medium mb-4 text-sm">Legal</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Copyright</a></li>
+              <li><a href="/terms" className="hover:text-foreground transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
+              <li><a href="/copyright" className="hover:text-foreground transition-colors">Copyright</a></li>
             </ul>
           </div>
         </div>

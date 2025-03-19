@@ -9,7 +9,9 @@ import {
   ThumbsDown,
   Reply,
   Flag,
-  MoreHorizontal
+  MoreHorizontal,
+  MessageCircle,
+  Share
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -18,7 +20,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-export interface ForumPostProps {
+export interface ForumReply {
+  id: string;
+  author: {
+    name: string;
+    avatar?: string;
+  };
+  content: string;
+  createdAt: string;
+  upvotes: number;
+  downvotes: number;
+}
+
+export interface ForumPostData {
   id: string;
   author: {
     id: string;
@@ -27,31 +41,31 @@ export interface ForumPostProps {
     role?: string;
     points?: number;
   };
+  title?: string;
   content: string;
   createdAt: string;
   upvotes: number;
   downvotes: number;
-  replies: number;
+  replies: ForumReply[] | number;
   isUserPost?: boolean;
+}
+
+interface ForumPostProps {
+  post: ForumPostData;
   onReply?: () => void;
   onReport?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
-const ForumPost = ({
-  author,
-  content,
-  createdAt,
-  upvotes,
-  downvotes,
-  replies,
-  isUserPost = false,
+const ForumPost: React.FC<ForumPostProps> = ({
+  post,
   onReply,
   onReport,
   onEdit,
   onDelete
-}: ForumPostProps) => {
+}) => {
+  const { author, content, createdAt, upvotes, downvotes, isUserPost = false } = post;
   const [votes, setVotes] = useState({ up: upvotes, down: downvotes });
   const [userVote, setUserVote] = useState<'up' | 'down' | null>(null);
   
@@ -81,6 +95,9 @@ const ForumPost = ({
       setUserVote(type);
     }
   };
+  
+  // Handle the replies which can be an array or a number
+  const replyCount = typeof post.replies === 'number' ? post.replies : post.replies.length;
   
   return (
     <Card className="forum-post">
@@ -178,10 +195,16 @@ const ForumPost = ({
               className="vote-button h-8 w-8"
               onClick={onReply}
             >
-              <MessageSquare className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" />
             </Button>
-            <span className="text-sm">{replies}</span>
+            <span className="text-sm">{replyCount}</span>
           </div>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="ghost" size="sm" className="flex items-center gap-1 text-xs">
+            <Share className="h-3.5 w-3.5" />
+            <span>Share</span>
+          </Button>
         </div>
       </CardFooter>
     </Card>

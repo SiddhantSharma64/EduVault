@@ -101,6 +101,11 @@ const Index = () => {
                       <Button
                         variant="ghost"
                         className="p-0 h-auto text-sm text-primary hover:text-primary/80 hover:bg-transparent"
+                        onClick={() => {
+                          document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
+                          // In a real app, this would filter resources by category
+                          console.log(`Browsing ${category.name} resources`);
+                        }}
                       >
                         Browse resources
                         <ChevronRight className="h-4 w-4 ml-1" />
@@ -159,7 +164,14 @@ const Index = () => {
                         <span className="text-sm">Student annotations</span>
                       </li>
                     </ul>
-                    <Button className="rounded-full">
+                    <Button 
+                      className="rounded-full"
+                      onClick={() => {
+                        document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
+                        // In a real app, this would filter resources by type
+                        console.log('Browsing lecture notes');
+                      }}
+                    >
                       Browse Lecture Notes
                     </Button>
                   </div>

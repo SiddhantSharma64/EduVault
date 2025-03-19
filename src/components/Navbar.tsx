@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { BookCopy, Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import Link from 'next/link';
+import Link from '@/hooks/use-link';
 import { useApp } from '@/lib/context/AppContext';
 import LoginButton from '@/components/auth/LoginButton';
 
@@ -37,10 +37,10 @@ export const Navbar = () => {
         }`}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 text-foreground">
+          <Link href="/" className="flex items-center gap-2 text-foreground">
             <BookCopy className="h-6 w-6 text-primary" />
             <span className="font-medium text-lg tracking-tight">EduVault</span>
-          </a>
+          </Link>
           
           {isMobile ? (
             <Button 
@@ -60,7 +60,7 @@ export const Navbar = () => {
               <ul className="flex gap-6">
                 <li>
                   <Link 
-                    href="/resources" 
+                    href="#resources" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Resources
@@ -68,7 +68,7 @@ export const Navbar = () => {
                 </li>
                 <li>
                   <Link 
-                    href="/categories" 
+                    href="#categories" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     Categories
@@ -76,7 +76,7 @@ export const Navbar = () => {
                 </li>
                 <li>
                   <Link 
-                    href="/about" 
+                    href="#about" 
                     className="text-sm text-foreground/80 hover:text-foreground transition-colors"
                   >
                     About
@@ -109,21 +109,21 @@ export const Navbar = () => {
         >
           <nav className="flex flex-col gap-4">
             <Link 
-              href="/resources" 
+              href="#resources" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Resources
             </Link>
             <Link 
-              href="/categories" 
+              href="#categories" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Categories
             </Link>
             <Link 
-              href="/about" 
+              href="#about" 
               className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >

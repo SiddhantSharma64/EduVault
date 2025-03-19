@@ -1,8 +1,10 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
+import { Upload } from 'lucide-react';
+import UploadModal from '@/components/UploadModal';
+import Link from '@/hooks/use-link';
 
 const Hero = () => {
   return (
@@ -40,19 +42,21 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto"
           >
-            <Button 
-              className="flex-1 h-12 rounded-full shadow-button button-hover"
-              size="lg"
-            >
-              Browse Resources
-            </Button>
-            <Button 
-              variant="outline"
-              className="flex-1 h-12 rounded-full button-hover"
-              size="lg"
-            >
-              Upload Your Work
-            </Button>
+            <Link href="#resources">
+              <Button 
+                className="flex-1 w-full h-12 rounded-full shadow-button button-hover"
+                size="lg"
+              >
+                Browse Resources
+              </Button>
+            </Link>
+            <UploadModal
+              buttonText="Upload Your Work"
+              buttonVariant="outline"
+              buttonClassName="flex-1 h-12 rounded-full button-hover"
+              buttonSize="lg"
+              showIcon={true}
+            />
           </motion.div>
           
           <motion.div

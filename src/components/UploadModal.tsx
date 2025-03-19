@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,7 +23,21 @@ import { Upload, X, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 
-const UploadModal = () => {
+interface UploadModalProps {
+  buttonText?: string;
+  buttonVariant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined;
+  buttonClassName?: string;
+  buttonSize?: "default" | "sm" | "lg" | "icon" | null | undefined;
+  showIcon?: boolean;
+}
+
+const UploadModal: React.FC<UploadModalProps> = ({
+  buttonText = "Upload Resource",
+  buttonVariant = "default",
+  buttonClassName = "rounded-full shadow-button button-hover",
+  buttonSize = "lg",
+  showIcon = true
+}) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState({
@@ -110,11 +123,12 @@ const UploadModal = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button 
-          className="rounded-full shadow-button button-hover"
-          size="lg"
+          variant={buttonVariant}
+          className={buttonClassName}
+          size={buttonSize}
         >
-          <Upload className="mr-2 h-4 w-4" />
-          Upload Resource
+          {showIcon && <Upload className="mr-2 h-4 w-4" />}
+          {buttonText}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[525px] p-0 overflow-hidden">

@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Download, Eye, FileText, File } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useApp } from '@/lib/context/AppContext';
+import { useToast } from '@/hooks/use-toast';
 
 export type ResourceType = {
   id: string;
@@ -23,6 +24,8 @@ interface ResourceCardProps {
 
 const ResourceCard: React.FC<ResourceCardProps> = ({ resource, index }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { handleDownload, user } = useApp();
+  const { toast } = useToast();
 
   const getFileIcon = () => {
     switch (resource.type) {
@@ -33,6 +36,31 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, index }) => {
       default:
         return <File className="h-10 w-10 text-primary" />;
     }
+  };
+
+  const handleViewResource = () => {
+    toast({
+      title: "Resource Preview",
+      description: `Opening preview for "${resource.title}"`,
+    });
+    // In a real app, this would open a preview modal or navigate to a preview page
+  };
+
+  const handleDownloadResource = () => {
+    if (!user) {
+      toast({
+        title: "Login Required",
+        description: "Please log in to download resources",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    handleDownload(resource.id);
+    toast({
+      title: "Download Started",
+      description: `Downloading "${resource.title}"`,
+    });
   };
 
   return (
@@ -68,10 +96,20 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource, index }) => {
             <p>{resource.uploadDate}</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full"
+              onClick={handleViewResource}
+            >
               <Eye className="h-4 w-4" />
             </Button>
-            <Button variant="secondary" size="icon" className="rounded-full">
+            <Button 
+              variant="secondary" 
+              size="icon" 
+              className="rounded-full"
+              onClick={handleDownloadResource}
+            >
               <Download className="h-4 w-4" />
             </Button>
           </div>
