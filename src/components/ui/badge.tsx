@@ -15,21 +15,36 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        achievement: "border-transparent bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-glow",
+        milestone: "border-transparent bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-glow",
+        special: "border-transparent bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-glow",
+      },
+      size: {
+        default: "px-2.5 py-0.5 text-xs",
+        sm: "px-2 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm",
+        xl: "px-4 py-1.5 text-base gap-1.5 flex items-center",
       },
     },
     defaultVariants: {
       variant: "default",
+      size: "default",
     },
   }
 )
 
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  icon?: React.ReactNode;
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({ className, variant, size, icon, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <div className={cn(badgeVariants({ variant, size }), className)} {...props}>
+      {icon && <span className="mr-1">{icon}</span>}
+      {props.children}
+    </div>
   )
 }
 

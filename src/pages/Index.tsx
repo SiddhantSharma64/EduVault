@@ -219,7 +219,7 @@ const Index = () => {
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl font-bold tracking-tight mb-4">
-                  About AcademicShare
+                  About EduVault
                 </h2>
                 <p className="text-muted-foreground">
                   Our mission is to make quality academic resources accessible to all students

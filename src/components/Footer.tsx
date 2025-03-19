@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BookCopy } from 'lucide-react';
 
@@ -10,7 +9,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <BookCopy className="h-6 w-6 text-primary" />
-              <span className="font-medium text-lg">AcademicShare</span>
+              <span className="font-medium text-lg">EduVault</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
               A beautiful, centralized platform for sharing academic resources, notes, 
@@ -40,7 +39,7 @@ const Footer = () => {
         
         <div className="border-t border-border/30 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} AcademicShare. All rights reserved.
+            © {new Date().getFullYear()} EduVault. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground mt-2 md:mt-0">
             Made with ❤️ for students

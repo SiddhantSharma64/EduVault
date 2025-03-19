@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -36,7 +35,7 @@ export const Navbar = () => {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 text-foreground">
             <BookCopy className="h-6 w-6 text-primary" />
-            <span className="font-medium text-lg tracking-tight">AcademicShare</span>
+            <span className="font-medium text-lg tracking-tight">EduVault</span>
           </a>
           
           {isMobile ? (
@@ -79,6 +78,14 @@ export const Navbar = () => {
                     About
                   </a>
                 </li>
+                <li>
+                  <a 
+                    href="/features" 
+                    className="text-sm text-foreground/80 hover:text-foreground transition-colors"
+                  >
+                    Features
+                  </a>
+                </li>
               </ul>
               <Button size="sm" className="rounded-full shadow-button button-hover">
                 Upload Resource
@@ -119,6 +126,13 @@ export const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
+            </a>
+            <a 
+              href="/features" 
+              className="text-foreground/80 hover:text-foreground p-2 rounded-md transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Features
             </a>
             <Button className="w-full rounded-full shadow-button">
               Upload Resource
