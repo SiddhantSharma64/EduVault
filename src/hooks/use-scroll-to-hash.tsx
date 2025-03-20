@@ -31,4 +31,10 @@ export function useScrollToHash() {
   return null;
 }
 
-export default useScrollToHash; 
+// Component version of the hook for direct use in JSX
+const ScrollToHash = () => {
+  useScrollToHash();
+  return null;
+};
+
+export default ScrollToHash; 

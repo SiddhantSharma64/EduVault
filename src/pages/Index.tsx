@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book, File, FileText, History, Presentation, Search } from 'lucide-react';
+import LoadingSpinner from '@/components/ui/loading-spinner';
 
 const categories = [
   { id: 'math', name: 'Mathematics', icon: <FileText className="h-5 w-5" />, count: 56 },
@@ -33,7 +34,7 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -41,11 +42,8 @@ const Index = () => {
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <div className="animate-pulse-subtle">
-          <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-full bg-primary/30 animate-pulse"></div>
-            <div className="h-6 w-32 rounded-md bg-muted/50 animate-pulse"></div>
-          </div>
+        <div className="flex flex-col items-center">
+          <LoadingSpinner size="lg" text="Preparing your learning resources..." />
         </div>
       </div>
     );
@@ -106,6 +104,7 @@ const Index = () => {
                           // In a real app, this would filter resources by category
                           console.log(`Browsing ${category.name} resources`);
                         }}
+                        data-scroll-to="resources"
                       >
                         Browse resources
                         <ChevronRight className="h-4 w-4 ml-1" />
@@ -171,6 +170,7 @@ const Index = () => {
                         // In a real app, this would filter resources by type
                         console.log('Browsing lecture notes');
                       }}
+                      data-scroll-to="resources"
                     >
                       Browse Lecture Notes
                     </Button>
