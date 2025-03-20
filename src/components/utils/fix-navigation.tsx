@@ -59,7 +59,7 @@ const FixNavigation: React.FC = () => {
         // Check if we're clicking on a button or an element with navigation attributes
         const isButton = target.tagName.toLowerCase() === 'button';
         const hasNavAttribute = target.hasAttribute('data-navigate-to') || 
-                               target.hasAttribute('data-scroll-to');
+                              target.hasAttribute('data-scroll-to');
         
         if (isButton || hasNavAttribute) {
           const navigateTo = target.getAttribute('data-navigate-to');
@@ -80,10 +80,14 @@ const FixNavigation: React.FC = () => {
             e.preventDefault();
             const element = document.getElementById(scrollTo);
             if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
+              // Add a small delay to ensure DOM is fully ready
+              setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }, 50);
             }
           }
           
+          // Don't process any further if we've found a navigation element
           break;
         }
         
@@ -91,13 +95,54 @@ const FixNavigation: React.FC = () => {
       }
     };
     
-    // Monitor and fix broken links
+    // Global event handler for clicks to capture all link/button interactions
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      
+      // Check if any ancestor has data-scroll-to or data-navigate-to attributes
+      let currentElement: HTMLElement | null = target;
+      
+      while (currentElement) {
+        if (currentElement.hasAttribute('data-scroll-to')) {
+          e.preventDefault();
+          const scrollTo = currentElement.getAttribute('data-scroll-to');
+          if (scrollTo) {
+            const element = document.getElementById(scrollTo);
+            if (element) {
+              setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }, 50);
+            }
+          }
+          break;
+        }
+        
+        if (currentElement.hasAttribute('data-navigate-to')) {
+          e.preventDefault();
+          const navigateTo = currentElement.getAttribute('data-navigate-to');
+          if (navigateTo) {
+            if (navigateTo.startsWith('/')) {
+              navigate(navigateTo);
+            } else {
+              window.location.href = navigateTo;
+            }
+          }
+          break;
+        }
+        
+        currentElement = currentElement.parentElement;
+      }
+    };
+    
+    // Monitor and fix broken links with capture phase to get events early
     document.addEventListener('click', handleAnchorClick, true);
     document.addEventListener('click', handleButtonClick, true);
+    document.addEventListener('click', handleGlobalClick, true);
     
     return () => {
       document.removeEventListener('click', handleAnchorClick, true);
       document.removeEventListener('click', handleButtonClick, true);
+      document.removeEventListener('click', handleGlobalClick, true);
     };
   }, [navigate]);
   

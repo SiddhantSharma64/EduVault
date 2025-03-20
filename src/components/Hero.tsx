@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Sparkles, BookOpen, GraduationCap, Brain } from 'lucide-react';
 import { Upload } from 'lucide-react';
-import UploadModal from '@/components/UploadModal';
+import UploadModal from '../components/UploadModal';
 import Link from '@/hooks/use-link';
+import { navigate } from '@/lib/utils';
 
 const floatingIconVariants = {
   initial: { opacity: 0, y: 20 },
@@ -29,6 +30,22 @@ const floatingIconVariants = {
 };
 
 const Hero = () => {
+  // Direct navigation handler for Browse Resources button
+  const handleBrowseClick = () => {
+    const resourcesSection = document.getElementById('resources');
+    if (resourcesSection) {
+      resourcesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Direct navigation handler for the arrow button
+  const handleArrowClick = () => {
+    const resourcesSection = document.getElementById('resources');
+    if (resourcesSection) {
+      resourcesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-20 overflow-hidden">
       {/* Background elements */}
@@ -126,22 +143,23 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto"
           >
-            <Link href="#resources">
-              <Button 
-                className="flex-1 w-full h-12 rounded-full shadow-button button-hover bg-gradient-to-r from-primary to-primary/90"
-                size="lg"
-                data-scroll-to="resources"
+            {/* Direct button with onClick handler instead of Link wrapper */}
+            <Button 
+              className="flex-1 w-full h-12 rounded-full shadow-button button-hover bg-gradient-to-r from-primary to-primary/90"
+              size="lg"
+              onClick={handleBrowseClick}
+              data-scroll-to="resources"
+            >
+              <motion.span 
+                initial={{ opacity: 0.8 }}
+                animate={{ opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="z-10 relative"
               >
-                <motion.span 
-                  initial={{ opacity: 0.8 }}
-                  animate={{ opacity: [0.8, 1, 0.8] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="z-10 relative"
-                >
-                  Browse Resources
-                </motion.span>
-              </Button>
-            </Link>
+                Browse Resources
+              </motion.span>
+            </Button>
+            
             <div className="flex-1">
               <UploadModal
                 buttonText="Upload Your Work"
@@ -168,9 +186,7 @@ const Hero = () => {
                 variant="ghost" 
                 size="icon"
                 className="rounded-full bg-primary/5 backdrop-blur-sm border border-primary/10 animate-hover-float"
-                onClick={() => {
-                  document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={handleArrowClick}
                 data-scroll-to="resources"
               >
                 <ArrowDown className="h-5 w-5 text-primary" />
